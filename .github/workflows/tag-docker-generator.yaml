@@ -31,7 +31,7 @@ jobs:
           new_tag=$(echo "$current_tag" | awk -F. -v OFS=. '{print $1,$2+1,0}')
           echo "New tag: $new_tag"
           echo "new_tag=$new_tag" >> $GITHUB_OUTPUT
-          git tag $new_tag
+          git tag $new_tag -m "python:3.11.3-alpine3.17, norminette:3.3.51"
           git push origin $new_tag
 
       - name: Minor release
@@ -44,7 +44,7 @@ jobs:
           echo "Minor update"
           new_tag=$(echo "$current_tag" | awk -F. '{$NF = $NF + 1;} 1' OFS=.)
           echo "New tag: $new_tag"
-          git tag $new_tag
+          git tag $new_tag -m "python:3.11.3-alpine3.17, norminette:3.3.51"
           git push origin $new_tag
 
   dockerhub-update:
